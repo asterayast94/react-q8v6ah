@@ -15,6 +15,20 @@ var allClientsData = [
     type: 'Customer Support',
   },
 ];
+var allClientsDataBackUp = [
+  {
+    id: '173',
+    user: '0',
+    to: '0',
+    rate: '5',
+    feedback: 'du6d6d6r\n',
+    tags: 'Customer Support',
+    date: '2023-03-30 16:31:58.520711',
+    customerId: '10011',
+    customerName: 'Guest',
+    type: 'Customer Support',
+  },
+];
 
 var viewFeedbackDates = 10;
 var viewFeedbackTypes = 'All';
@@ -76,9 +90,11 @@ export async function getMyFeedbacks() {
       var responseStatus = data.status;
       // xrotator.style.display = 'none';
       allClientsData = [];
+      allClientsDataBackUp = [];
       for (var i = 0; i < feedbacks.length; i++) {
         allClientsData.push(feedbacks[i]);
       }
+      allClientsDataBackUp = allClientsData;
       doer();
     });
 
@@ -96,7 +112,10 @@ function doer() {
     viewFeedbackDates +
     ' days refreshed, with total of ' +
     allClientsData.length +
-    ' results';
+    ' results, ' +
+    ' under ' +
+    filterWithRatingValue +
+    ' ratings';
 
   var xrotator = document.getElementById('rotator');
   if (xrotator.style.display === 'block') {
@@ -114,15 +133,16 @@ function doer() {
   jsp_change_page(1);
   // return data;
 
-  paginagationSorter(10);
+  paginagationSorter(5);
 }
 
 let jsp_current_pagers = 1;
-var jsp_records_per_page = 10;
+var jsp_records_per_page = 5;
 export function paginagationSorter(values) {
   console.log('paginagationSorter   -------------++++------ ' + values);
 
   var recordsPerPage = document.getElementById('recordsPerPageSorter').value;
+
   jsp_records_per_page = recordsPerPage;
   console.log(
     'recordsPerPageSorter ++++++++++++++++++++++ ' +
@@ -179,6 +199,8 @@ function jsp_change_page(page) {
     i < page * jsp_records_per_page && i < allClientsData.length;
     i++
   ) {
+    let dateHere = allClientsData[i].date;
+    let dateofRatingSubmit = dateHere.slice(0, 10);
     let data = '';
 
     data += '<tr > ';
@@ -205,7 +227,7 @@ function jsp_change_page(page) {
 
     data += '<td>' + i + '</td>';
     data += '<td>' + allClientsData[i].type + '</td>';
-    data += '<td>' + allClientsData[i].customerId + '</td>';
+    data += '<td>' + allClientsData[i].customerID + '</td>';
     data += '<td>' + allClientsData[i].customerName + '</td>';
     data += '<td>' + allClientsData[i].rate + '</td>';
     data += '<td>' + allClientsData[i].feedback + '</td>';
@@ -218,7 +240,8 @@ function jsp_change_page(page) {
     } else {
       data += '<td style="color:red">' + 'warning' + '</td>';
     }
-    data += '<td>' + allClientsData[i].date + '</td>';
+    // data += '<td>' + allClientsData[i].date + '</td>';
+    data += '<td>' + dateofRatingSubmit + '</td>';
 
     // data += '<td><button class="button" onclick="ShowInformationPopUPPage(0)">View</button></td>';
 
@@ -326,6 +349,37 @@ function ShowInformationPopUPPage(a) {
 // 	});
 // });
 
+var filterWithRatingValue = 5;
+export function ratingsSorter(values) {
+  console.log('paginagationSorter   -------------++++------ ' + values);
+
+  var recordsFilterByRating = document.getElementById('filterByRating').value;
+
+  if (recordsFilterByRating === 'All Ratings') {
+    filterWithRatingValue = 5;
+  } else {
+    filterWithRatingValue = recordsFilterByRating;
+  }
+
+  console.log(
+    ' Filter Data with Rating Sorter ++++++++++++++++++++++ ' +
+      recordsFilterByRating +
+      '  per page'
+  );
+  allClientsData = [];
+
+  for (var i = 0; i < allClientsDataBackUp.length; i++) {
+    if (allClientsDataBackUp[i].rate <= filterWithRatingValue) {
+      allClientsData.push(allClientsDataBackUp[i]);
+    }
+  }
+
+  // console.log('paginagationSorter   -------------++++------ ' + button);
+  if (allClientsData.length > 0) {
+    doer();
+  }
+}
+
 export function exportExcel(data) {
   var CsvString = '';
 
@@ -346,8 +400,11 @@ export function exportExcel(data) {
   CsvString += '\r\n';
 
   for (var i = 0; i < allClientsData.length; i++) {
+    let dateHere = allClientsData[i].date;
+    let dateofRatingSubmit = dateHere.slice(0, 10);
+    let no = i + 1;
     CsvString +=
-      i +
+      no +
       ',' +
       allClientsData[i].tags +
       ',' +
@@ -357,7 +414,7 @@ export function exportExcel(data) {
       ',' +
       allClientsData[i].rate +
       ',' +
-      allClientsData[i].date +
+      dateofRatingSubmit +
       ',' +
       allClientsData[i].feedback;
 

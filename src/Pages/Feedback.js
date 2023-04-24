@@ -22,7 +22,7 @@ import {
   getMyFeedbacks,
   refreshButton, 
   exportExcel,
-  paginagationSorter,jsp_next_page,jsp_prev_page,ShowInformationPopUPPage,poptest,handleClick,
+  paginagationSorter,ratingsSorter,jsp_next_page,jsp_prev_page,ShowInformationPopUPPage,poptest,handleClick,
 } from './Api/feedbackApiRequest';
 import 'bootstrap/dist/css/bootstrap.css';
 import Col from 'react-bootstrap/Col';
@@ -132,15 +132,18 @@ export default function Main(props) {
           <div class="fullCenterBody">
             <div class="ext-box">
               <div class="int-box">
-                <Row>
-                  <div class="float-container">
-                    <div class="float-child">
-                      <div class="green">Filter Feedbacks</div>
+                <Row  >
+                 
+                 
+                  <div     >
+                    <Row   >
+                     
+              <Col>
 
                       <div>
-                        {/* <button onclick={ }> Filter Feedbacks </button> */}
-
-                        <select class="form-control" id="TypesofFeedbackToView">
+                     Filter Feedbacks 
+                  
+                        <select id="TypesofFeedbackToView">
                           <option onClick={viewFeedbackTypeChanger('All')}>
                             All
                           </option>
@@ -160,46 +163,73 @@ export default function Main(props) {
                             Network
                           </option>
                         </select>
-                      </div>
-                    </div>
-
-                    <div class="float-child">
-                      <div class="blue">Last Dates back</div>
-
-                      {/* <button onclick={caller()}> click </button> */}
-
-                      <select class="form-control" id="DatesToView">
-                        <option>1</option>
-                        <option>5</option>
-                        <option>10</option>
-                        <option>30</option>
-                        <option>60</option>
-                        <option>90</option>
-                        <option>120</option>
-                      </select>
-                    </div>
-
-                    <div class="float-child">
-                      <button onClick={refreshButton} class="btn btn-success">
-                        Refresh Feedback
-                      </button>
-                      <div id="rotator">
-                        <div class="spinner-border text-primary" role="status">
-                          <span class="visually-hidden">.. + .. + </span>
+                   
                         </div>
-                      </div>
-                    </div>
+
+              </Col>
+                     
+  <Col>
+            <div>       
+                        Feedbacks of the Last 
                     
+              <input  list="feedDates" name="feedDates" id="DatesToView"/>
+              <datalist id="feedDates">
+                <option value="1"> days </option>
+                <option value="5"> days</option>
+                <option value="10"> days</option>
+                <option value="30"> days</option>
+                <option value="60"> days</option>
+                <option value="120"> days</option>
+                <option value="180"> days</option>
+                <option value="180"> days</option>
+              </datalist> 
+                
+                
+            </div>
+  </Col>     
+ 
+                  
+                  <div id="rotator">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="visually-hidden">.. + .. + </span>
+                    </div>
                   </div>
+
+  
+                
+ 
+  <Col>
+ 
+ <button onClick={refreshButton} class="btn btn-success">
+                         Refresh Feedback
+                       </button>
+                    
+  
+  
+                       </Col>
+                           </Row>
+ 
+                   
+          
+           
+ 
+
+                 
+                    
+</div>
+
 
                 </Row>
 
+
+
+                <div  class="form-control"  >
                 <p
                   id="CustomerFeedbackINFOTEXT"
                   class="table table-striped table-striped-bg-default mt-3"
                 ></p>
 
-              
+              </div>
                       
                 <div className="fullTableSize">
                   <div className="App">
@@ -266,9 +296,24 @@ export default function Main(props) {
 
                     <button onClick={paginagationSorter}  style={{width:100}} >Records Per PAge</button>
  
- <button onClick={exportExcel} style={{width:100}} >Export To Excel</button>
- <button onClick= {() => { mypopup();} }   style={{width:100}} >pop  Test </button> 
- <button onClick= {() => { handleClick(1);} }   style={{width:100}} >pop  Test </button>
+           </div> 
+ 
+ 
+           <div class="row">
+
+           <select class="form-control" id="filterByRating" style={{width:100}}>
+                      <option onClick={ratingsSorter }>All Ratings</option>
+                      <option onClick={ ratingsSorter}>5</option>
+                      <option onClick={ratingsSorter }>4</option>
+                      <option onClick={ ratingsSorter}>3</option> 
+                      <option onClick={ ratingsSorter}>2</option>
+                      <option onClick={ratingsSorter }>1</option>
+                    </select>
+
+                    <button onClick={ratingsSorter}  style={{width:100}} >Filter Ratings Below</button>
+  
+ 
+ <button onClick={exportExcel} style={{width:100}} >Export To Excel</button> 
            </div> 
  
             
@@ -284,8 +329,7 @@ export default function Main(props) {
                 <p>Link 1</p>
                 <p>Link 2</p>
                 <p>Link 3</p> 
-
-                <button onClick={ }>alert</button>
+ 
               </div>
             </div>
           </div>

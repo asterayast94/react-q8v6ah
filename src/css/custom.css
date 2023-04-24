@@ -12,6 +12,8 @@ div.int-box {
   height: 90%;
   border: 5px;
   padding-top: 200;
+  overflow-y: auto; /* Trigger vertical scroll    */
+  overflow-x: auto;
   border-color: gold;
 }
 
