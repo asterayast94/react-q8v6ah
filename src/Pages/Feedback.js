@@ -281,16 +281,9 @@ export default function Main(props) {
             <div class="ext-box">
               <div class="int-box">
                 <h2>Important Links</h2>
-                <p>bla bla bla</p>
-                <p>bla bla bla</p>
-                <p>bla bla bla</p>
-                <p>bla bla bla</p>
-                <p>bla bla bla</p>
-                <p>bla bla bla</p>
-                <p>bla bla bla</p>
-                <p>bla bla bla</p>
-                <p>bla bla bla</p>
-                <p>bla bla bla</p>
+                <p>Link 1</p>
+                <p>Link 2</p>
+                <p>Link 3</p> 
 
                 <button onClick={ }>alert</button>
               </div>

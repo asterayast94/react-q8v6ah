@@ -86,7 +86,7 @@ export async function getMyFeedbacks() {
 }
 
 function doer() {
-  mypopup();
+  // mypopup();
 
   var notifier = document.getElementById('CustomerFeedbackINFOTEXT');
 
@@ -177,7 +177,7 @@ function jsp_change_page(page) {
   for (
     let i = (page - 1) * jsp_records_per_page;
     i < page * jsp_records_per_page && i < allClientsData.length;
-    i++ 
+    i++
   ) {
     let data = '';
 

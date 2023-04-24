@@ -12,8 +12,8 @@ function CollapsibleExample() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="feedbacks">Feedback</Nav.Link>
-            <Nav.Link href="locations">Locations</Nav.Link>
+            <Nav.Link href="feedback">Feedback</Nav.Link>
+            <Nav.Link href="location">Locations</Nav.Link>
             <NavDropdown title="Coming Soon" id="collasible-nav-dropdown">
               <NavDropdown.Item href=""> New 1 </NavDropdown.Item>
 
