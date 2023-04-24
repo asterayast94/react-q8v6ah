@@ -377,6 +377,12 @@ export function ratingsSorter(values) {
   // console.log('paginagationSorter   -------------++++------ ' + button);
   if (allClientsData.length > 0) {
     doer();
+  } else {
+    var oldTableData = document.getElementById('listing-table');
+
+    for (var i = 0; i < oldTableData.childNodes.length; i++) {
+      oldTableData.removeChild(oldTableData.childNodes[i]); //you may need an if to only remove the images
+    }
   }
 }
 

@@ -135,7 +135,7 @@ export default function Main(props) {
                 <Row  >
                  
                  
-                  <div     >
+                <div  class="form-control"  >
                     <Row   >
                      
               <Col>
@@ -189,12 +189,7 @@ export default function Main(props) {
   </Col>     
  
                   
-                  <div id="rotator">
-                    <div class="spinner-border text-primary" role="status">
-                      <span class="visually-hidden">.. + .. + </span>
-                    </div>
-                  </div>
-
+              
   
                 
  
@@ -224,6 +219,12 @@ export default function Main(props) {
 
 
                 <div  class="form-control"  >
+                <div id="rotator">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="visually-hidden">.. + .. + </span>
+                    </div>
+                  </div>
+
                 <p
                   id="CustomerFeedbackINFOTEXT"
                   class="table table-striped table-striped-bg-default mt-3"
